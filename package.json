@@ -1,0 +1,16 @@
+{
+  "name": "linter-perlcritic",
+  "linter-package": true,
+  "main": "./lib/init",
+  "version": "0.0.0",
+  "description": "Linter plugin for perl, using perlcritic",
+  "keywords": [
+  ],
+  "repository": "https://github.com/atom/linter-perlcritic",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}

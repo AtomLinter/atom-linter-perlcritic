@@ -1,7 +1,7 @@
 {
   "name": "linter-perlcritic",
   "linter-package": true,
-  "main": "./lib/init",
+  "main": "./lib/main",
   "version": "0.1.1",
   "description": "Linter plugin for perl, using perlcritic",
   "keywords": [],
@@ -10,5 +10,14 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "atom-linter": "^3.0.0"
+  },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  }
 }

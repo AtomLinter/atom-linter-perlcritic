@@ -18,12 +18,13 @@ module.exports =
         filePath = textEditor.getPath()
         command = atom.config.get('linter-perlcritic.executablePath') or @config.executablePath.default
         parameters = []
-        parameters.push(filePath)
+        parameters.push '--verbose'
+        parameters.push '8'
+        parameters.push filePath
         text = textEditor.getText()
         return helpers.exec(command, parameters).then (output) ->
           errors = for message in helpers.parse(output, regex, {filePath: filePath})
             message.type = 'error'
             message
 
-          console.dir errors
           return errors

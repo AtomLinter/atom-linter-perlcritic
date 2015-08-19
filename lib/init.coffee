@@ -9,21 +9,20 @@ module.exports =
 
   provideLinter: ->
     helpers = require('atom-linter')
-    regex = '(?<message>.*) at line (?<line>\\d+), column (?<col>\\d+). (?<message1>.*)'
+    regex = '[^:]*:(?<line>\\d+):(?<col>\\d+):(?<message>.*)'
     provider =
       grammarScopes: ['source.perl.mojolicious', 'source.perl']
       scope: 'file'
       lintOnFly: true
       lint: (textEditor) =>
-        filePath = textEditor.getPath()
-        command = atom.config.get('linter-perlcritic.executablePath') or @config.executablePath.default
+        filePath   = textEditor.getPath()
+        command    = atom.config.get "linter-perlcritic.executablePath"
         parameters = []
         parameters.push(filePath)
         text = textEditor.getText()
         return helpers.exec(command, parameters).then (output) ->
           errors = for message in helpers.parse(output, regex, {filePath: filePath})
-            message.type = 'error'
+            message.type = 'info'
             message
 
-          console.dir errors
           return errors

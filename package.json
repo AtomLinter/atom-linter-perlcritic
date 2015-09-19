@@ -7,7 +7,7 @@
   "repository": "https://github.com/whity/atom-linter-perlcritic.git",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.0.0"
   },
   "providedServices": {
     "linter": {
@@ -17,6 +17,10 @@
     }
   },
   "dependencies": {
-    "atom-linter": "3.2.0"
-  }
+    "atom-linter"      : "^3.0.0",
+    "atom-package-deps": "^2.0.0"
+  },
+  "package-deps": [
+    "linter"
+  ]
 }

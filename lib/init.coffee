@@ -6,6 +6,10 @@ module.exports =
       type: 'string'
       title: 'Perlcritic Executable Path'
       default: 'perlcritic' # Let OS's $PATH handle the rest
+  activate: ->
+    # We are now using steelbrain's package dependency package to install our
+    #  dependencies.
+    require("atom-package-deps").install("linter-perlcritic");
 
   provideLinter: ->
     helpers = require('atom-linter')

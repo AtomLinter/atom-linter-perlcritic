@@ -15,6 +15,7 @@ module.exports =
     helpers = require('atom-linter')
     regex = '[^:]*:(?<line>\\d+):(?<col>\\d+):(?<message>.*)'
     provider =
+      name: 'perlcritic'
       grammarScopes: ['source.perl.mojolicious', 'source.perl']
       scope: 'file'
       lintOnFly: true

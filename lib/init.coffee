@@ -1,5 +1,6 @@
 {CompositeDisposable} = require 'atom'
 Path = require 'path'
+NamedRegexp = require 'named-regexp'
 
 module.exports =
   config:
@@ -7,13 +8,18 @@ module.exports =
       type: 'string'
       title: 'Perlcritic Executable Path'
       default: 'perlcritic' # Let OS's $PATH handle the rest
+    regex:
+      type: 'string'
+      title: 'Perlcritic Verbose Regex'
+      default: '(:<text>.*) at line (:<line>\\d+), column (:<col>\\d+).\\s+(:<trace>.*\\.)\\s+\\(Severity: (:<severity>\\d+)\\)'
+    level:
+      type: 'string'
+      title: 'Perlcritic Level of warning'
+      default: 'Info'
+
 
   activate: ->
     require("atom-package-deps").install("linter-perlcritic")
-    @subscriptions = new CompositeDisposable
-    @subscriptions.add atom.config.observe "linter-perlcritic.executablePath",
-      (executablePath) =>
-        @executablePath = executablePath
 
   provideLinter: ->
     helpers = require('atom-linter')
@@ -25,23 +31,34 @@ module.exports =
       lint: (textEditor) =>
         filePath = textEditor.getPath()
         fileDir = Path.dirname(filePath)
-        command = @executablePath
+        command = atom.config.get('linter-perlcritic.executablePath')
         parameters = []
         parameters.push('-')
         text = textEditor.getText()
         return helpers.exec(command, parameters, {stdin: text, cwd: fileDir}).then (output) ->
-          regex = /(.*) at line (\d+), column (\d+).\s+(.*\.)\s+\(Severity: (\d+)\)/g
+          regex = new RegExp(atom.config.get('linter-perlcritic.regex'), 'ig')
+          regex = NamedRegexp.named(regex)
           messages = []
           while ((match = regex.exec(output)) isnt null)
-            line = parseInt(match[2], 10) - 1
-            col = parseInt(match[3], 10) - 1
+            line = parseInt(match.capture('line'), 10) - 1
+            col = parseInt(match.capture('col'), 10) - 1
+            text = match.capture('text')
+            
+            # get all named captures
+            captures = match.captures
+
+            # severity
+            if (captures['severity'])
+                text += ' (Severity ' + match.capture('severity') + ')'
+
+            # trace
+            if (captures['trace'])
+                text += ' [' + match.capture('trace') + ']'
+
             messages.push
-              type: 'Error'
-              text: match[1]
+              type: atom.config.get('linter-perlcritic.level')
+              text: text
               filePath: filePath
               range: helpers.rangeFromLineNumber(textEditor, line, col)
-              trace: [
-                type: 'Trace'
-                text: match[4]
-              ]
+
           return messages

@@ -8,14 +8,11 @@ module.exports =
       type: 'string'
       title: 'Perlcritic Executable Path'
       default: 'perlcritic' # Let OS's $PATH handle the rest
-    regex:
-      type: 'string'
-      title: 'Perlcritic Verbose Regex'
-      default: '(:<text>.*) at line (:<line>\\d+), column (:<col>\\d+).\\s+(:<trace>.*\\.)\\s+\\(Severity: (:<severity>\\d+)\\)'
     level:
       type: 'string'
-      title: 'Perlcritic Level of warning'
-      default: 'Info'
+      title: 'Perlcritic Severity Level'
+      default: '(5) gentle'
+      enum: ['(5) gentle', '(4) stern', '(3) harsh', '(2) cruel', '(1) brutal']
 
 
   activate: ->
@@ -25,40 +22,40 @@ module.exports =
     helpers = require('atom-linter')
     provider =
       name: 'perlcritic'
-      grammarScopes: ['source.perl.mojolicious', 'source.perl']
+      grammarScopes: ['source.perl']
       scope: 'file'
       lintOnFly: true
       lint: (textEditor) =>
-        filePath = textEditor.getPath()
-        fileDir = Path.dirname(filePath)
-        command = atom.config.get('linter-perlcritic.executablePath')
-        parameters = []
-        parameters.push('-')
-        text = textEditor.getText()
-        return helpers.exec(command, parameters, {stdin: text, cwd: fileDir}).then (output) ->
-          regex = new RegExp(atom.config.get('linter-perlcritic.regex'), 'ig')
-          regex = NamedRegexp.named(regex)
+        new Promise (resolve, reject) =>
+          filePath = textEditor.getPath()
+          fileDir = Path.dirname(filePath)
+          command = atom.config.get('linter-perlcritic.executablePath')
+          [levelNum] = atom.config.get('linter-perlcritic.level').match /(\d)/
+          parameters = []
           messages = []
-          while ((match = regex.exec(output)) isnt null)
-            line = parseInt(match.capture('line'), 10) - 1
-            col = parseInt(match.capture('col'), 10) - 1
-            text = match.capture('text')
-            
-            # get all named captures
-            captures = match.captures
+          errors =
+            1: 'Info'
+            2: 'Info'
+            3: 'Info'
+            4: 'Warning'
+            5: 'Error'
+          RE = /(.*) at line (\d+), column (\d+)(.*)\(Severity: (\d)\)/
+          parameters.push('-' + levelNum)
+          parameters.push('--verbose')
+          parameters.push(4)
+          text = textEditor.getText(atom.config.get('linter-perlcritic.executablePath'))
 
-            # severity
-            if (captures['severity'])
-                text += ' (Severity ' + match.capture('severity') + ')'
-
-            # trace
-            if (captures['trace'])
-                text += ' [' + match.capture('trace') + ']'
-
-            messages.push
-              type: atom.config.get('linter-perlcritic.level')
-              text: text
-              filePath: filePath
-              range: helpers.rangeFromLineNumber(textEditor, line, col)
-
-          return messages
+          return helpers.exec(command, parameters, {stdin: text, cwd: fileDir}).then (output) ->
+            lines = output.split(/\n/)
+            lines.pop()
+            for line in lines
+              [unuse, message, lineNum, columnNum, pbp, levelNum] = line.match RE
+              messages.push
+                type: errors[levelNum]
+                text: message + pbp
+                filePath: filePath
+                range: [
+                  [lineNum - 1, columnNum - 1]
+                  [lineNum - 1, textEditor.getBuffer().lineLengthForRow(lineNum - 1)]
+                ]
+            resolve messages;

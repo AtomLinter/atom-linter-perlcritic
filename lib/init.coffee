@@ -16,6 +16,10 @@ module.exports =
       type: 'string'
       title: 'Perlcritic Level of warning'
       default: 'Info'
+    commandlineOptions:
+      type: 'string'
+      title: 'Additional Commandline options'
+      default: ''
 
 
   activate: ->
@@ -34,6 +38,7 @@ module.exports =
             fileDir = Path.dirname(filePath)
             command = atom.config.get('linter-perlcritic.executablePath')
             parameters = []
+            parameters.push(atom.config.get('linter-perlcritic.commandlineOptions'))
             parameters.push('-')
             text = textEditor.getText()
             return helpers.exec(command, parameters, {stdin: text, cwd: fileDir}).then (output) ->

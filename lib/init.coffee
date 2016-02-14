@@ -37,8 +37,10 @@ module.exports =
             filePath = textEditor.getPath()
             fileDir = Path.dirname(filePath)
             command = atom.config.get('linter-perlcritic.executablePath')
+            cmdOptions = atom.config.get('linter-perlcritic.commandlineOptions')
             parameters = []
-            parameters.push(atom.config.get('linter-perlcritic.commandlineOptions'))
+            if (cmdOptions)
+                parameters.push(cmdOptions)
             parameters.push('-')
             text = textEditor.getText()
             return helpers.exec(command, parameters, {stdin: text, cwd: fileDir}).then (output) ->

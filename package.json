@@ -1,13 +1,24 @@
 {
   "name": "linter-perlcritic",
-  "main": "./lib/init",
+  "main": "lib/init.js",
   "version": "1.0.0",
+  "private": true,
   "description": "Linter plugin for perl, using perlcritic",
-  "keywords": [],
-  "repository": "https://github.com/whity/atom-linter-perlcritic.git",
+  "keywords": [
+    "perl",
+    "perlcritic",
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AtomLinter/atom-linter-perlcritic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AtomLinter/atom-linter-perlcritic/issues"
+  },
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "providedServices": {
     "linter": {

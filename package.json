@@ -17,7 +17,8 @@
     "url": "https://github.com/AtomLinter/atom-linter-perlcritic/issues"
   },
   "scripts": {
-    "test": "apm test"
+    "test": "apm test",
+    "lint": "eslint ."
   },
   "license": "MIT",
   "engines": {
@@ -37,5 +38,34 @@
   },
   "package-deps": [
     "linter"
-  ]
+  ],
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-plugin-import": "^1.12.0"
+  },
+  "eslintConfig": {
+    "rules": {
+      "global-require": "off",
+      "import/no-extraneous-dependencies": "off",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+            "atom"
+          ]
+        }
+      ]
+    },
+    "parser": "babel-eslint",
+    "extends": "airbnb-base",
+    "globals": {
+      "atom": true
+    },
+    "env": {
+      "es6": true,
+      "node": true
+    }
+  }
 }

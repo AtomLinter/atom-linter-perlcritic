@@ -16,6 +16,9 @@
   "bugs": {
     "url": "https://github.com/AtomLinter/atom-linter-perlcritic/issues"
   },
+  "scripts": {
+    "test": "apm test"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

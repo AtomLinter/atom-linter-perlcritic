@@ -1,0 +1,28 @@
+dependencies:
+  override:
+    - curl -L https://atom.io/download/deb -o atom-amd64.deb
+    - sudo dpkg --install atom-amd64.deb || true
+    - sudo apt-get update
+    - sudo apt-get -f install
+    # Install perlcritic
+    - sudo apt-get install perl
+    - PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install Perl::Critic'
+    - perlcritic --version
+    # Install all deps using system npm
+    - npm install
+
+test:
+  override:
+    # - npm run lint
+    # Remove the node_modules installed with the system npm to test real apm install
+    - rm -Rf node_modules
+    - atom -v
+    - apm -v
+    - apm install --production
+    # Now use npm to install the devDependencies (for specs)
+    - npm install
+    - apm test
+
+machine:
+  node:
+    version: 6

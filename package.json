@@ -40,12 +40,12 @@
     "linter"
   ],
   "devDependencies": {
-    "babel-eslint": "^7.0.0",
     "eslint": "^3.8.0",
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.0.1"
   },
   "eslintConfig": {
+    "extends": "airbnb-base",
     "rules": {
       "global-require": "off",
       "import/no-extraneous-dependencies": "off",
@@ -58,8 +58,6 @@
         }
       ]
     },
-    "parser": "babel-eslint",
-    "extends": "airbnb-base",
     "globals": {
       "atom": true
     },

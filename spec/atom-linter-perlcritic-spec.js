@@ -15,15 +15,15 @@ describe('The perlcritic provider for Linter', () => {
       Promise.all([
         atom.packages.activatePackage('linter-perlcritic'),
         atom.packages.activatePackage('language-perl'),
-      ])
+      ]),
     );
   });
 
   it('shows nothing wrong with a valid file', () => {
     waitsForPromise(() =>
       atom.workspace.open(goodPath).then(editor => lint(editor)).then(messages =>
-        expect(messages.length).toBe(0)
-      )
+        expect(messages.length).toBe(0),
+      ),
     );
   });
 
@@ -37,7 +37,7 @@ describe('The perlcritic provider for Linter', () => {
         expect(messages[0].html).not.toBeDefined();
         expect(messages[0].filePath).toBe(badPath);
         expect(messages[0].range).toEqual([[0, 0], [0, 2]]);
-      })
+      }),
     );
   });
 });

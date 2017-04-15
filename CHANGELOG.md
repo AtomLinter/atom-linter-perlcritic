@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1 - 2017-04-15
+
+*   Updated to be compatible with new version of AtomLinter
+
 ## 1.4.0 - 2017-02-18
 
 *   Updated to be compatible with new version of AtomLinter

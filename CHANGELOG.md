@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.2 - 2017-06-01
+
+*   Improvements to package activation time
+
 ## 1.4.1 - 2017-04-15
 
 *   Updated to be compatible with new version of AtomLinter

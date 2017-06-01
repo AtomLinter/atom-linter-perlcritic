@@ -44,7 +44,7 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">=1.4.0 <2.0.0"
+    "atom": ">=1.7.0 <2.0.0"
   },
   "providedServices": {
     "linter": {
@@ -84,7 +84,8 @@
       "atom": true
     },
     "env": {
-      "node": true
+      "node": true,
+      "browser": true
     }
   }
 }

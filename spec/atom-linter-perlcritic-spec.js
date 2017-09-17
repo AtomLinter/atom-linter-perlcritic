@@ -4,7 +4,7 @@
 import { it, fit, wait, beforeEach, afterEach } from 'jasmine-fix';
 import * as path from 'path';
 
-const lint = require('../lib/init.js').provideLinter().lint;
+const { lint } = require('../lib/init.js').provideLinter();
 
 const goodPath = path.join(__dirname, 'fixtures', 'good.pl');
 const badPath = path.join(__dirname, 'fixtures', 'bad.pl');

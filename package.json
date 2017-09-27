@@ -29,7 +29,8 @@
     "level": {
       "type": "string",
       "title": "Perlcritic Level of warning",
-      "default": "Info"
+      "default": "info",
+      "enum": ["info", "warning", "error"]
     },
     "commandlineOptions": {
       "type": "string",
@@ -44,16 +45,16 @@
   "providedServices": {
     "linter": {
       "versions": {
-        "1.0.0": "provideLinter"
+        "2.0.0": "provideLinter"
       }
     }
   },
   "dependencies": {
     "atom-linter": "^10.0.0",
-    "atom-package-deps": "^4.0.1"
+    "atom-package-deps": "^4.6.0"
   },
   "package-deps": [
-    "linter"
+    "linter:2.0.0"
   ],
   "devDependencies": {
     "eslint": "^4.6.0",

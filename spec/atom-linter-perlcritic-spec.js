@@ -33,6 +33,6 @@ describe('The perlcritic provider for Linter', () => {
     expect(messages[0].severity).toBe('info');
     expect(messages[0].excerpt).toBe(cbS);
     expect(messages[0].location.file).toBe(badPath);
-    expect(messages[0].location.position).toEqual([[0, 0], [0, 2]]);
+    expect(messages[0].location.position).toEqual([[1, 0], [1, 2]]);
   });
 });

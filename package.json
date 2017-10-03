@@ -1,7 +1,7 @@
 {
   "name": "linter-perlcritic",
   "main": "lib/init.js",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "private": true,
   "description": "Linter plugin for perl, using perlcritic",
   "keywords": [
@@ -30,7 +30,11 @@
       "type": "string",
       "title": "Perlcritic Level of warning",
       "default": "info",
-      "enum": ["info", "warning", "error"]
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ]
     },
     "commandlineOptions": {
       "type": "string",

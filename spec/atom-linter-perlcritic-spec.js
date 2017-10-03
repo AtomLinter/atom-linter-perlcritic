@@ -30,10 +30,9 @@ describe('The perlcritic provider for Linter', () => {
     const messages = await lint(editor);
 
     expect(messages.length).toBeGreaterThan(0);
-    expect(messages[0].type).toBe('Info');
-    expect(messages[0].text).toBe(cbS);
-    expect(messages[0].html).not.toBeDefined();
-    expect(messages[0].filePath).toBe(badPath);
-    expect(messages[0].range).toEqual([[0, 0], [0, 2]]);
+    expect(messages[0].severity).toBe('info');
+    expect(messages[0].excerpt).toBe(cbS);
+    expect(messages[0].location.file).toBe(badPath);
+    expect(messages[0].location.position).toEqual([[1, 0], [1, 2]]);
   });
 });

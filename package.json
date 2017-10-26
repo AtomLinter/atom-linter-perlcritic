@@ -40,6 +40,52 @@
       "type": "string",
       "title": "Additional Commandline options",
       "default": ""
+    },
+    "showSeverity": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show the severity number of the violation."
+    },
+    "showExplanation": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show the short explanation or PBP page reference of the violation."
+    },
+    "showPolicy": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show the policy that reported the violation."
+    },
+    "forceMinimumSeverity": {
+      "type": "string",
+      "default": "none",
+      "description": "Force `perlcritic` to apply policies of a certain severity.",
+      "enum": [
+        {
+          "value": "none",
+          "description": "No forced severity."
+        },
+        {
+          "value": "gentle",
+          "description": "Gentle (>5)"
+        },
+        {
+          "value": "stern",
+          "description": "Stern (>4)"
+        },
+        {
+          "value": "harsh",
+          "description": "Harsh (>3)"
+        },
+        {
+          "value": "cruel",
+          "description": "Cruel (>2)"
+        },
+        {
+          "value": "brutal",
+          "description": "Brutal (>=1)"
+        }
+      ]
     }
   },
   "license": "MIT",

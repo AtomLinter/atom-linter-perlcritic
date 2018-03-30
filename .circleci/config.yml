@@ -8,6 +8,12 @@ defaults: &defaults
     - image: arcanemagus/atom-docker-ci:stable
   steps:
     # Restore project state
+    - run:
+      name: install perl
+      command: sudo apt-get install perl
+    - run:
+      name: install perlcritic
+      command: sudo apt-get install libperl-critic-perl
     - attach_workspace:
         at: /tmp
     - run:

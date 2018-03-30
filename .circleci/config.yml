@@ -13,7 +13,7 @@ defaults: &defaults
         command: sudo apt-get install perl
     - run:
         name: install perlcritic
-        command: PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install Perl::Critic'
+        command: PERL_MM_USE_DEFAULT=1 sudo perl -MCPAN -e 'install Perl::Critic'
     - attach_workspace:
         at: /tmp
     - run:

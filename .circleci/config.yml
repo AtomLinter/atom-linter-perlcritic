@@ -38,8 +38,6 @@ defaults: &defaults
         paths:
           - node_modules
         key: v2-dependencies-{{ checksum "package.json" }}
-
-
 jobs:
   checkout_code:
     <<: *defaults
@@ -79,14 +77,12 @@ jobs:
       - run:
           name: Lint code
           command: npm run lint
-
 stable:
   <<: *defaults
 beta:
   <<: *defaults
   docker:
     - image: arcanemagus/atom-docker-ci:beta
-
 workflows:
   version: 2
   test_package:
@@ -101,4 +97,3 @@ workflows:
       - beta:
           requires:
             - lint
-

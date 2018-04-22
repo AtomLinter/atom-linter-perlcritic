@@ -29,6 +29,9 @@ defaults: &defaults
         name: Cleaning package
         command: ${APM_SCRIPT_PATH} clean
     - run:
+        name: Setup 'apm'
+        command: apm install
+    - run:
         name: Package dependencies
         command: |
           if [ -n "${APM_TEST_PACKAGES}" ]; then

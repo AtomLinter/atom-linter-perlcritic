@@ -30,6 +30,10 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
+          - nvm install lts/*
+          - node --version
+          - npm --version
+          - npx --version
           - npx semantic-release
 
 install:

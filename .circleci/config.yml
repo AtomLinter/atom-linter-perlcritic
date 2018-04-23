@@ -10,7 +10,11 @@ defaults: &defaults
     # Restore project state
     - run:
         name: install perl
-        command: sudo apt-get install perl
+        command: |
+          sudo apt-get update && \
+          sudo apt-get install --assume-yes --quiet \
+          --no-install-suggests --no-install-recommends \
+          perl
     - run:
         name: install perlcritic
         command: PERL_MM_USE_DEFAULT=1 sudo perl -MCPAN -e 'install Perl::Critic'
@@ -47,6 +51,7 @@ defaults: &defaults
         paths:
           - node_modules
         key: v2-dependencies-{{ checksum "package.json" }}
+
 jobs:
   checkout_code:
     <<: *defaults
@@ -92,6 +97,7 @@ jobs:
     <<: *defaults
     docker:
       - image: arcanemagus/atom-docker-ci:beta
+
 workflows:
   version: 2
   test_package:

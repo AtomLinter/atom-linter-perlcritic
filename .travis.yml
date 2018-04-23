@@ -26,14 +26,14 @@ jobs:
       # the main language instead of Node.js.
       before_script:
         - export PATH=${PATH}:${HOME}/atom/usr/bin/
+        - nvm install lts/*
+        - node --version
+        - npm --version
+        - npx --version
       deploy:
         provider: script
         skip_cleanup: true
         script:
-          - nvm install lts/*
-          - node --version
-          - npm --version
-          - npx --version
           - npx semantic-release
 
 install:

@@ -34,7 +34,7 @@ defaults: &defaults
         command: ${APM_SCRIPT_PATH} clean
     - run:
         name: Setup 'apm'
-        command: apm install
+        command: ${APM_SCRIPT_PATH} install
     - run:
         name: Package dependencies
         command: |

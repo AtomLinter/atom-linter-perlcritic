@@ -5,7 +5,7 @@ environment:
   - ATOM_CHANNEL: beta
 
 install:
-  - cpan Perl::Critic
+  - cpanm Perl::Critic
 
 # Generic setup follows
 build_script:

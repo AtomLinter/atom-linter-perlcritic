@@ -9,6 +9,8 @@ install:
 
 # Generic setup follows
 build_script:
+  - perl --version
+  - perlcritic --version
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/atom/ci/master/build-package.ps1'))
 
 branches:

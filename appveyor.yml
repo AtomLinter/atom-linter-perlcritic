@@ -5,10 +5,14 @@ environment:
   - ATOM_CHANNEL: beta
 
 install:
-  - cpan Perl::Critic
+  - choco install strawberryperl -y
+  - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
+  - cpanm install Perl::Critic
 
 # Generic setup follows
 build_script:
+  - perl --version
+  - perlcritic --version
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/atom/ci/master/build-package.ps1'))
 
 branches:

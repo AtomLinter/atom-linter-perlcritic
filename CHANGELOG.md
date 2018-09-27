@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/AtomLinter/atom-linter-perlcritic/compare/v2.1.0...v2.1.1) (2018-09-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency atom-package-deps to v4.6.2 ([6ae4091](https://github.com/AtomLinter/atom-linter-perlcritic/commit/6ae4091))
+
 # Changelog
 
 ## 1.4.2 - 2017-06-01

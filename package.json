@@ -17,7 +17,6 @@
     "url": "https://github.com/AtomLinter/atom-linter-perlcritic/issues"
   },
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "apm test",
     "lint": "eslint ."
   },
@@ -161,5 +160,10 @@
         "groupName": "ESLint packages"
       }
     ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

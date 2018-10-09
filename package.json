@@ -30,8 +30,10 @@
     "level": {
       "type": "string",
       "title": "Perlcritic Level of warning",
-      "default": "info",
+      "description": "If set to auto this applies a mapping between the linter log levels and perlcritic severity. It's more colorful but may be set to constant values too.",
+      "default": "auto",
       "enum": [
+        "auto",
         "info",
         "warning",
         "error"

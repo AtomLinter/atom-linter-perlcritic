@@ -136,4 +136,55 @@ describe('The perlcritic provider for Linter', () => {
       checkCbsMessage(messages[3]);
     });
   });
+
+
+  describe('allows controlling the linter messages level', () => {
+    let editor;
+
+    function getMessagesSeverity(messages) {
+      const severities = {};
+      messages.forEach((message) => {
+        severities[message.severity] = 1;
+      });
+
+      return severities;
+    }
+
+    beforeEach(async () => {
+      atom.config.set('linter-perlcritic.forceMinimumSeverity', 'cruel');
+      editor = await atom.workspace.open(badPath);
+    });
+
+    it('defaults to auto', async () => {
+      const messages = await lint(editor);
+      expect(Object.keys(getMessagesSeverity(messages)).length).toBeGreaterThan(1);
+    });
+
+    it('supports forcing to info', async () => {
+      atom.config.set('linter-perlcritic.level', 'info');
+      const messages = await lint(editor);
+      const severities = getMessagesSeverity(messages);
+
+      expect(Object.keys(severities).length).toBe(1);
+      expect(Object.keys(severities)[0]).toBe('info');
+    });
+
+    it('supports forcing to warning', async () => {
+      atom.config.set('linter-perlcritic.level', 'warning');
+      const messages = await lint(editor);
+      const severities = getMessagesSeverity(messages);
+
+      expect(Object.keys(severities).length).toBe(1);
+      expect(Object.keys(severities)[0]).toBe('warning');
+    });
+
+    it('supports forcing to error', async () => {
+      atom.config.set('linter-perlcritic.level', 'error');
+      const messages = await lint(editor);
+      const severities = getMessagesSeverity(messages);
+
+      expect(Object.keys(severities).length).toBe(1);
+      expect(Object.keys(severities)[0]).toBe('error');
+    });
+  });
 });

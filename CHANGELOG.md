@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/AtomLinter/atom-linter-perlcritic/compare/v2.2.0...v2.2.1) (2018-10-13)
+
+
+### Bug Fixes
+
+* repo url ([1bd1ea8](https://github.com/AtomLinter/atom-linter-perlcritic/commit/1bd1ea8))
+
 ## [2.2.0](https://github.com/AtomLinter/atom-linter-perlcritic/compare/v2.1.1...v2.2.0) (2018-10-13)
 
 ## Improvements

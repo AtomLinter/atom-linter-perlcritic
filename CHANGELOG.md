@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/AtomLinter/atom-linter-perlcritic/compare/v2.2.3...v2.3.0) (2020-07-02)
+
+
+### Features
+
+* **dev:** update eslint packages ([55b03b6](https://github.com/AtomLinter/atom-linter-perlcritic/commit/55b03b6a3f21cbf6e1923930b760eee6d17f9f50))
+
 ## [2.2.3](https://github.com/AtomLinter/atom-linter-perlcritic/compare/v2.2.2...v2.2.3) (2019-04-22)
 
 

@@ -137,7 +137,6 @@ describe('The perlcritic provider for Linter', () => {
     });
   });
 
-
   describe('allows controlling the linter messages level', () => {
     let editor;
 

@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/AtomLinter/atom-linter-perlcritic/compare/v2.3.0...v2.3.1) (2020-07-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency atom-package-deps to v6 ([e0de351](https://github.com/AtomLinter/atom-linter-perlcritic/commit/e0de3519f2badb36b8342374532c01cca8b8c7f7))
+
 # [2.3.0](https://github.com/AtomLinter/atom-linter-perlcritic/compare/v2.2.3...v2.3.0) (2020-07-02)
 
 

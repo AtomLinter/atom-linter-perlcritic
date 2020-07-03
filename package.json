@@ -1,7 +1,7 @@
 {
   "name": "linter-perlcritic",
   "main": "lib/init.js",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "private": true,
   "description": "Linter plugin for perl, using perlcritic",
   "keywords": [
